@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jenna McLaughlin - Carrier Corporation Task</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <header class="container">
+      <h1>
+        Carrier Corporation Candidate Brief<br /><span>Jenna McLaughlin</span>
+      </h1>
+    </header>
+    <main class="container">
+      <!-- status code table section -->
+      <section>
+        <h2>Status Code Table</h2>
+        <div class="float-img-para">
+          <p>
+            Scan QR code or reference troubleshooting guide in installation
+            manual. The major status code is displayed in the first 2 digits of
+            the display. The minor status code is displayed in the third digit.
+            The major status code is also displayed on the LED indicator through
+            the door with the first digit being the number of short flashes and
+            the second digit being the number of long flashes.
+          </p>
+          <img src="assets/qr.jpg" alt="QR code for Status Code Table" />
+        </div>
+        <div class="search-status-table">
+          <label for="search">Search for major</label>
+          <input
+            type="text"
+            id="search-major"
+            onkeyup="searchMajor()"
+            placeholder="Input major..."
+            name="search"
+            maxlength="10"
+          />
+        </div>
+        <!-- 
+        
+        STATUS CODE TABLE
+        
+        -->
+        <table id="status-code-table" class="status-code-table">
+          <caption>
+            Status code table
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="table-major">Major</th>
+              <th scope="col">Minor</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <!-- major 10 -->
+          <tbody data-major="10">
+            <tr>
+              <th scope="row" class="table-major">10</th>
+              <td class="table-minor">1</td>
+              <td rowspan="2">L1 polarity fault</td>
+            </tr>
+            <tr>
+              <td colspan="2" class="table-major">Rapid flash LED</td>
+            </tr>
+            <tr>
+              <th scope="row" class="table-major">10</th>
+              <td class="table-minor">2</td>
+              <td>Dissipation event detected, operate blower</td>
+            </tr>
+          </tbody>
+          <tbody data-major="otR">
+            <tr>
+              <th scope="row" colspan="2" class="table-major">
+                <span class="machineFont">otR</span>
+              </th>
+              <td>Firmware install in process.</td>
+            </tr>
+          </tbody>
+          <tbody data-major="btL">
+            <tr>
+              <th scope="row" colspan="2" class="table-major">
+                <span class="machineFont">btL</span>
+              </th>
+              <td>Failed to load, retry firmware install</td>
+            </tr>
+          </tbody>
+          <!-- major 12 -->
+          <tbody data-major="12">
+            <tr>
+              <th scope="row" class="table-major">12</th>
+              <td class="table-minor">1</td>
+              <td>W on at power up</td>
+            </tr>
+          </tbody>
+          <!-- major 13 -->
+          <tbody data-major="13">
+            <tr>
+              <th scope="row" class="table-major">13 (3hr)</th>
+              <td class="table-minor">1</td>
+              <td>Limit Lockout</td>
+            </tr>
+          </tbody>
+          <!-- major 14 -->
+          <tbody data-major="14">
+            <tr>
+              <th scope="row" class="table-major" rowspan="4">14<br />(3hr)</th>
+              <td class="table-minor">1</td>
+              <td>W on at power up</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>Flame lost 3 times after 70s of heating</td>
+            </tr>
+            <tr>
+              <td class="table-minor">3</td>
+              <td>Max ignitions reached in heat cycle</td>
+            </tr>
+            <tr>
+              <td class="table-minor">4</td>
+              <td>Lockout &mdash; 7 LPS open events during a heat request.</td>
+            </tr>
+          </tbody>
+          <!-- major 15 -->
+          <tbody data-major="15">
+            <tr>
+              <th scope="row" rowspan="2" class="table-major">15<br />(3hr)</th>
+              <td class="table-minor">1</td>
+              <td>Lockout &mdash; no Blower rpms detected</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>Lockout &mdash; Failed to reach 500rpm</td>
+            </tr>
+          </tbody>
+          <!-- major 17 -->
+          <tbody data-major="17">
+            <tr>
+              <th scope="row" class="table-major">17</th>
+              <td class="table-minor">1</td>
+              <td>Lost BTM Communication</td>
+            </tr>
+          </tbody>
+          <!-- major 21 -->
+          <tbody data-major="21">
+            <tr>
+              <th scope="row" class="table-major">21</th>
+              <td class="table-minor">1</td>
+              <td>
+                24VAC sensed on gas valve when shouldn't be, power reset only
+              </td>
+            </tr>
+          </tbody>
+          <!-- major 22 -->
+          <tbody data-major="22">
+            <tr>
+              <th scope="row" class="table-major">22</th>
+              <td class="table-minor">1</td>
+              <td>False flame</td>
+            </tr>
+          </tbody>
+          <!-- major 23 -->
+          <tbody data-major="23">
+            <tr>
+              <th scope="row" rowspan="3" class="table-major">23</th>
+              <td class="table-minor">4</td>
+              <td>LPS stuck closed</td>
+            </tr>
+            <tr>
+              <td class="table-minor">5</td>
+              <td>HPS stuck closed</td>
+            </tr>
+            <tr>
+              <td class="table-minor">6</td>
+              <td>MPS stuck closed</td>
+            </tr>
+          </tbody>
+          <!-- major 24 -->
+          <tbody data-major="24">
+            <tr>
+              <th scope="row" class="table-major">24</th>
+              <td class="table-minor">1</td>
+              <td>Fuse fault</td>
+            </tr>
+          </tbody>
+          <!-- major 25 -->
+          <tbody data-major="25">
+            <tr>
+              <th scope="row" rowspan="6" class="table-major">25</th>
+              <td class="table-minor">1</td>
+              <td>No program</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>Computed program file, reprogram control.</td>
+            </tr>
+            <tr>
+              <td class="table-minor">4</td>
+              <td>Main program invalid, using backup program to operate.</td>
+            </tr>
+            <tr>
+              <td class="table-minor">5</td>
+              <td>Installer settings corrupted.</td>
+            </tr>
+            <tr>
+              <td class="table-minor">6</td>
+              <td>Wrong program, reprogram control.</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                If program in furnace control is missing, not recognized, or
+                corrupted. Reprogram control with correct program # as listed on
+                the rating plate. Replace control if issue remains.
+              </td>
+            </tr>
+          </tbody>
+          <!-- major 27 -->
+          <tbody data-major="27">
+            <tr>
+              <th scope="row" rowspan="3" class="table-major">27</th>
+              <td class="table-minor">1</td>
+              <td rowspan="3">
+                Program in super plug is missing, not recognized, or corrupted.
+                Remove super plug then retry. If still have 27 code, try a
+                different super plug. If still fails, replace control.
+              </td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+            </tr>
+            <tr>
+              <td class="table-minor">3</td>
+            </tr>
+          </tbody>
+          <!-- major 31 -->
+          <tbody data-major="31">
+            <tr>
+              <th scope="row" rowspan="3" class="table-major">31</th>
+              <td class="table-minor">1</td>
+              <td>
+                Medium heat pressure switch input OFF when it should be ON
+              </td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>Medium heat pressure ON when it should be OFF</td>
+            </tr>
+            <tr>
+              <td class="table-minor">6</td>
+              <td>
+                Open HPS &mdash; HPS failed to close in 75s when transitioning
+                from low to high heat
+              </td>
+            </tr>
+          </tbody>
+          <!-- major 32 -->
+          <tbody data-major="32">
+            <tr>
+              <th scope="row" class="table-major">32</th>
+              <td class="table-minor">2</td>
+              <td>Open Low pressure switch (LPS)</td>
+            </tr>
+          </tbody>
+          <!-- major 33 -->
+          <tbody data-major="33">
+            <tr>
+              <th scope="row" class="table-major">33</th>
+              <td class="table-minor">1</td>
+              <td>Main Limit circuit open.</td>
+            </tr>
+          </tbody>
+          <!-- major 34 -->
+          <tbody data-major="34">
+            <tr>
+              <th scope="row" rowspan="5" class="table-major">34</th>
+              <td class="table-minor">1</td>
+              <td>Ignition fault &mdash; four consecutive ignition trials.</td>
+            </tr>
+            <tr>
+              <td class="table-minor">5</td>
+              <td>Low or Medium Heat flame lost before blower on-delay</td>
+            </tr>
+            <tr>
+              <td class="table-minor">6</td>
+              <td>Low or Medium Heat flame lost after blower on-delay</td>
+            </tr>
+            <tr>
+              <td class="table-minor">7</td>
+              <td>High heat flame lost before blower on-delay</td>
+            </tr>
+            <tr>
+              <td class="table-minor">8</td>
+              <td>High heat flame lost after blower on-delay</td>
+            </tr>
+          </tbody>
+          <!-- major 35 -->
+          <tbody data-major="35">
+            <tr>
+              <th scope="row" class="table-major">35</th>
+              <td class="table-minor">1</td>
+              <td>Modulating gas valve not communicating.</td>
+            </tr>
+          </tbody>
+          <!-- major 41 -->
+          <tbody data-major="41">
+            <tr>
+              <th scope="row" rowspan="3" class="table-major">41</th>
+              <td class="table-minor">1</td>
+              <td>No blower RPM at start up</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>No RPM when blower motor is running</td>
+            </tr>
+            <tr>
+              <td class="table-minor">3</td>
+              <td>Blower not reaching 500rpm</td>
+            </tr>
+          </tbody>
+          <!-- major 42 -->
+          <tbody data-major="42">
+            <tr>
+              <th scope="row" rowspan="3" class="table-major">42</th>
+              <td class="table-minor">1</td>
+              <td>No inducer RPM at start up</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>No RPM when inducer motor is running</td>
+            </tr>
+            <tr>
+              <td class="table-minor">3</td>
+              <td>Exceeding inducer RPM limit</td>
+            </tr>
+          </tbody>
+          <!-- major 43 -->
+          <tbody data-major="43">
+            <tr>
+              <th scope="row" class="table-major">43</th>
+              <td class="table-minor">1</td>
+              <td>HPS closed before LPS or MPS closed before LPS</td>
+            </tr>
+          </tbody>
+          <!-- major 45 -->
+          <tbody data-major="45">
+            <tr>
+              <th scope="row" rowspan="5" class="table-major">45</th>
+              <td class="table-minor">1</td>
+              <td>Internal control error (1hr)</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>GVR relay not closing</td>
+            </tr>
+            <tr>
+              <td class="table-minor">3</td>
+              <td>Micro EEPROM error (1hr)</td>
+            </tr>
+            <tr>
+              <td class="table-minor">4</td>
+              <td>Micro loss of Comm</td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                For code 45, cycle power, if code 45 repeats, replace control.
+              </td>
+            </tr>
+          </tbody>
+          <!-- major 51 -->
+          <tbody data-major="51">
+            <tr>
+              <th scope="row" rowspan="2" class="table-major">51</th>
+              <td class="table-minor">1</td>
+              <td>OAT &mdash; Open</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>OAT &mdash; Short</td>
+            </tr>
+          </tbody>
+          <!-- major 52 -->
+          <tbody data-major="52">
+            <tr>
+              <th scope="row" rowspan="2" class="table-major">52</th>
+              <td class="table-minor">1</td>
+              <td>SAT &mdash; Open</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>SAT &mdash; Short</td>
+            </tr>
+          </tbody>
+          <!-- major 53 -->
+          <tbody data-major="53">
+            <tr>
+              <th scope="row" rowspan="2" class="table-major">53</th>
+              <td class="table-minor">1</td>
+              <td>RAT &mdash; Open</td>
+            </tr>
+            <tr>
+              <td class="table-minor">2</td>
+              <td>RAT &mdash; Short</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- menu navigation section -->
+      <section>
+        <h2 class="menu-navigation">Menu Navigation</h2>
+        <p>
+          Scroll through main menu by pressing the MENU/SELECT button. Press
+          NEXT/OPTION button to view current setting (will flash on display) and
+          to scroll through setting options. Press MENU/SELECT button to save
+          new setting and return to main menu. The display will flash to confirm
+          setting selection before returning to the main menu.
+        </p>
+        <div class="menu-navigation-tables">
+          <!-- 
+        
+        SYSTEM STATUS TABLE
+        
+        -->
+          <table class="system-status-table">
+            <caption>
+              System Status
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Display</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="machineFont">idL</span></th>
+                <td>Idle / Stand by Mode</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="machineFont">Ht</span> - %rate</th>
+                <td>Heating Mode</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="machineFont">CL2</span></th>
+                <td>High Cooling Mode</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="machineFont">CL 1</span></th>
+                <td>Low Cooling Mode</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="machineFont">HPd</span></th>
+                <td>Heat Pump Defrost Mode</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">CFn</span>,
+                  <span class="machineFont">CF2</span>,
+                  <span class="machineFont">CF3</span>
+                </th>
+                <td>Continous Fan Mode</td>
+              </tr>
+              <tr>
+                <th scope="row">##.#</th>
+                <td>Active Status Code</td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- 
+        
+        MAIN MENU TABLE
+        
+        -->
+          <table class="main-menu-table">
+            <caption>
+              Main Menu
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Display</th>
+                <th scope="col">Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">idL</span>,
+                  <span class="machineFont">Ht</span>, ...
+                </th>
+                <td>Current System Status</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">FLt</span>
+                </th>
+                <td>Last 7 faults that occured</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">t&deg;</span>
+                </th>
+                <td>Temperature Display ON/OFF</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Ht</span>
+                </th>
+                <td>Heating Blower speed</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">CL2</span>,
+                  <span class="machineFont">CL1</span>
+                </th>
+                <td>Cooling and Heat Pump Blower speed</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">CFn</span>
+                </th>
+                <td>Continous fan speed</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Hod</span>
+                </th>
+                <td>Heat OFF delay</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Cod</span>
+                </th>
+                <td>Cool OFF delay</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Htt</span>
+                </th>
+                <td>Heating thermostat type</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Ctt</span>
+                </th>
+                <td>Cooling thermostat type</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">d ir</span>
+                </th>
+                <td>Orientation upflow or downflow</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">bSt</span>
+                </th>
+                <td>Inducer Boost</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">A ir</span>
+                </th>
+                <td>CFM display ON/OFF</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">inF</span>
+                </th>
+                <td>Program # and Software version</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">Ct</span>
+                </th>
+                <td>Component test</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <span class="machineFont">rSt</span>
+                </th>
+                <td>Reset All Installer Settings to Factory Defaults</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <h2 class="h3">Component Test</h2>
+        <p>
+          To initiate the component test sequence, the control must be in (<span
+            class="machineFont"
+            >idL</span
+          >) mode. No thermostat demands (W, Y, G). Select component test (<span
+            class="machineFont"
+            >Ct</span
+          >) from menu select buttons to start the component test sequence. Once
+          initiated the furnace control will perform the following sequence:
+        </p>
+        <p>
+          <span class="machineFont">Err</span> during a step means issue
+          detected
+        </p>
+        <ol>
+          <li>
+            <span class="machineFont">PUr</span> &mdash; Inducer ON (remains ON
+            for test).
+          </li>
+          <li>
+            <span class="machineFont">S i9</span> &mdash; After 15s, Gas valve
+            communication check for 15 seconds.
+          </li>
+          <li>
+            <span class="machineFont">HS I</span> &mdash; After sig, HSI ON for
+            15 seconds.
+          </li>
+          <li>
+            <span class="machineFont">Fn</span> &mdash; After HSI, then Blower
+            ON for 15 seconds.
+          </li>
+          <li>
+            <span class="machineFont">End</span> &mdash; After Blower, Inducer
+            ON for 10s.
+          </li>
+          <li>The test ends.</li>
+        </ol>
+      </section>
+
+      <!-- copyright -->
+      <section>
+        <small>
+          <strong
+            >All copyrighted materials used herein are the property of their
+            respective owners.</strong
+          >
+        </small>
+      </section>
+    </main>
+  </body>
+</html>
